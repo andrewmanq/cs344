@@ -1,0 +1,25 @@
+Exercise 2.1
+a. Hill-climbing and Simulated Annealing both give the right answer (15)
+b. Timing both functions, Simulated Annealing is significantly faster in some instances. In a few rare instances, hill-climbing comes out ahead.
+c. Yes. Numbers like 28 and 3 greatly reduces the time hill-climbing takes.
+    why? Hill-climbing is very reliant on its current state, and always iterates from its initial position.
+d. Changing the delta >1 makes the search algorithms inaccurate, making them unable to probe real numbers.
+    Changing the delta to <1 improves the hill-climbing algorithm time, although I'm not completely sure why.
+e. The exp_schedule() function sets parameters that identify the probability factor of the algorithm: when and how likely the program will choose a random point to reference. This method exponentially increases the likelihood of finding the best solution.
+
+Exercise 2.2
+a. The Hill-climbing solution only found the local maximum of its starting position. It usually took longer than Simulated annealing.
+    Simulated annealing usually found a higher value, but sometimes jumped to a less favorable local maximum. Sometimes it would go past 30, or into the negatives.
+b. The starting value would always determine where the Hill Climber went. Simulated Annealing would usually lie somewhere nearby.
+c. Making the step size smaller allowed both algorithms to find more precise centers to the arcs. Larger step sizes caused some arcs to be skipped over, because the steps would jump across local maximums.
+d. There's no real maximum or minimum value, because the range spans forever. Decreasing delta makes the algorithms converge to relatively similar answers, because it discourages a wider search range.
+
+Exercise 2.3
+a. Both algorithms did much better. It makes sense, because they get more chances to search the function.
+b. The hill climbing algorithm usually falls around 25 with a delta of 1. Simulated annealing falls in the mid-30s.
+c. Simulated annealing does better 9 times out of 10. Since it already has a randomized searching function, it is improved by the random restarts.
+
+Exercise 2.4
+a. Simulated Annealing, because it is much more optimized in our implementation.
+b. Quite a few, considering that it is only a few numbers per solution.
+c. I'd store a sorted list of solutions, tested with increasingly shrinking range. The first search would start in two halves of the range, then test values closer to the best solution selected by the previous search. Rinse and repeat.
