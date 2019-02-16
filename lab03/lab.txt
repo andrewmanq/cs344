@@ -1,0 +1,35 @@
+Andrew Quist
+CS 344 lab 3
+kvlinden
+
+Exercise 3.1
+
+a. Each algorithm's performance on an easy problem:
+    -Depth-First: 57.06 seconds, no solution -- since depth-first has no heuristic abilities, it will search many dead ends and time out the program.
+    -AC3: 0.029 seconds, found solution -- thanks to the usefulness of constraints and arc-reduction, it takes less traversals to find the solution.
+    -Backtracing: 7.7 seconds, found solution -- while not as efficient as ac3, backtracing finds its strength in the non-naive approach of 'remembering' the less successful states.
+    -Min Conflicts: 79.2 seconds, no solution -- min-conflicts is a greedy algorithm, and falls prey to local minimums. It might settle on a solution that is 'good enough' for that branch.
+
+b.  i.  Changing backtracing's unassigned variable to the 'minimum remaining variable' (as opposed to first unassigned) added ~2 minutes to the compute time.
+    ii. Setting the inference to forward_checking cut the compute time to mere milliseconds.
+    Using mrv together with forward_checking has yeilded by far the best results. I'm guessing that using a minimizing function doesn't work well without foresight.
+
+Exercise 3.2
+
+a.  AC3 seems to never find a solution no matter how large/small n is. This might be a bug, but I'm not sure.
+    Backtracing and min_conflicts allow values within n > 3 (with the exception of n=1). That's because 2x2 and 3x3 boards don't allow enough space to avoid conflicts.
+b.  As with sudoku, the fastest and best results come from forward checking and min remaining values.
+c.  For any n value over 11, it takes around 130 steps to solve the board.
+
+Excersise 3.3
+
+a.  Problems with 1 or 2 variables and limited state possibilities are suited for traditional methods. Since traditional search
+algorithms are good at exhaustive traversals of state trees, problems that have more foreseeable solutions can be discovered quicker by
+these brute-force algorithms.
+Problems that have multiple inter-variable dynamics (like neighbors and domain position) can't always be easily traversed without diving
+into the goal test considerations that would be boiled down to a true/false output by traditional problems.
+
+b.  The true advantage of CSP methods is that their added complexity allows greater control over what paths are chosen and explored.
+Traditional problems have a reductionist approach: breaking down states into possible actions, and then determining whether those actions
+are allowed or not (actions, state change, goal test). This results in solutions that are only as good as their graph-searchable attributes.
+CSP implementations can cross-reference multiple variables to avoid the pitfalls that a traditional method would rush into.
