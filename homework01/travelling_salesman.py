@@ -1,5 +1,4 @@
 from labs.homework01.search import *
-from random import randrange
 import math
 import time
 import random
@@ -41,14 +40,16 @@ class TSP(Problem):
 
 
 def findDist(A, B):
-    """finds the distance between 2d coordinates"""
+    """finds the distance between 2d coordinates.
+    I decided to use 2d vectors because it is far more memory-effective
+    than making an interconnected undirected graph."""
     return math.sqrt((A[0]-A[1])**2
                      + (B[0]-B[1])**2)
 
 
 if __name__ == "__main__":
 
-    numCities = 30
+    numCities = 15
 
     # cityList = [(0, 5), (23, 7), (9, 20), (1, 4), (30, 10), (10, 42)]
     cityList = []
