@@ -1,16 +1,18 @@
-from labs.homework01.search import *
+from search import *
 import math
 import time
 import random
 
-
+"""My implementation of TSP uses a list of 2d coordinates, calculating the distance of the total trip."""
 class TSP(Problem):
-
+    """initial should be a long list of number tuples that serve as 2d coordinates"""
     def __init__(self, initial):
 
         self.initial = initial
         # random.shuffle(self.initial)
 
+    """the only action an algorithm can use is switching two cities around.
+    This function returns every pair of cities (except switching a city with itself)"""
     def actions(self, state):
         switchList = []
         size = len(state)
@@ -21,6 +23,7 @@ class TSP(Problem):
                     switchList.append(newoption)
         return switchList
 
+    """returns a list of coordinates with the corresponding cities switched around."""
     def result(self, state, action):
         newState = state.copy()
         newState[action[0]] = state[action[1]]
@@ -28,15 +31,14 @@ class TSP(Problem):
 
         return newState
 
+    """returns the miles between points (as a negative number,
+    so that the solver tries to minimize distance instead of increase it)"""
     def value(self, state):
         fullDist = 0
         size = len(state)
         for i in range(0, size):
             fullDist += findDist(state[i], state[(i + 1) % size])
         return -fullDist
-
-    def path_cost(self, c, state1, action, state2):
-        return c + self.value(state2) - self.value(state1)
 
 
 def findDist(A, B):
@@ -49,7 +51,7 @@ def findDist(A, B):
 
 if __name__ == "__main__":
 
-    numCities = 15
+    numCities = 20
 
     # cityList = [(0, 5), (23, 7), (9, 20), (1, 4), (30, 10), (10, 42)]
     cityList = []
@@ -61,12 +63,13 @@ if __name__ == "__main__":
     print("original problem: " + str(cityList))
     print("original value: " + str(-theProblem.value(cityList)) + "miles\n")
 
-    anneal = simulated_annealing(theProblem, exp_schedule(k=20, lam=0.05, limit=1000))
-
+    print("simulated annealing solution: ")
+    anneal = simulated_annealing(theProblem, exp_schedule(k=20, lam=0.005, limit=10000))
     print(str(anneal)
           + '\nvalue: ' + str(-theProblem.value(anneal)) + " miles\n")
 
-    hill = hill_climbing(theProblem, )
+    print("hillclimbing solution: ")
+    hill = hill_climbing(theProblem)
 
     print(str(hill)
           + '\nvalue: ' + str(-theProblem.value(hill)) + " miles\n")
