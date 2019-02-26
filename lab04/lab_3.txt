@@ -1,0 +1,21 @@
+Exercise 4.3
+
+a.
+    i. P(user) = .089
+    ii. P(test | user) = .99 - drug test works 99% of the time for drug dealers
+    iii. P(-test | user) = 1 - .99 = .01
+    iv. .02
+    v. P(user | test) = P(user and test) /  P(test)
+        P(user and test) = .99 * .089
+        P(test) = .08514 * (.99 * .089) / (.99 * .089 + .911 * .02) = .829
+b.
+    P(cancer) = .01
+    P(positive | cancer) = .8
+    P(positive | !cancer) = .096
+    P(cancer | positive) = P(cancer and positive) / P(positive)
+
+    P(cancer and positive) = .8 * .01 = .0008
+    ---------------------------------------------divided by
+    P(positive) = .8 * .01 + .096 * .99 = .10304
+
+    ...equals .0776 or 7.76%
