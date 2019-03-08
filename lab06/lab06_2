@@ -1,0 +1,17 @@
+Exercise 6.2
+
+Information gain (A) = Entropy(A) - remainder (A)
+
+7 hungry       |  5 not hungry
+-------------------------------------
+5 will wait    |  1 will wait
+2 won't wait   |  4 will not wait
+
+Entropy(Hungry) = 1 because there's 2 outcomes for 1 input (Hungry)
+
+Remainder(Hungry) = 5/12 * -(1/5 * lg(1/5) + 4/5 * lg(4/5))
+                    + 7/12 * -(2/7 * lg(2/7) + 5/7 * lg(5/7))
+                   = 0.8042903712
+Gain = .1957096288
+
+This is a worse question, we don't gain much from whether or not the people are hungry.

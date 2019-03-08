@@ -1,0 +1,53 @@
+partner: Matthew Nykamp
+
+Exercise 6.1
+
+FRAMING---------------------------------------------------
+
+What we want the ML to do:
+To determine how threatening a person appears in an image.
+
+Our ideal outcome:
+For the algorithm to identify threatening images the same way that a human would. This could useful for content curation, especially for children.
+
+Success metrics:
+How close the algorithm's output is to a human's answer (AKA from a scale of 0 to 1 of how threatening a person appears to be)
+
+Key Results:
+Arriving at an answer that is less than .1 units away from the actual human response.
+
+ML Model failure:
+Arriving at an answer that is more than .1 units away from the actual human response.
+
+ML output:
+The image will produce a single number ranging from 0 to 1.
+
+Output definition:
+A scale, 0 being completely non-threatening, 1 being very threatening.
+
+The output from the ML model will be made:
+When the image is requested from a database.
+
+The outcome will be used for:
+A child filter for image searches.
+
+If we didn't use ML?
+We would have to use a human to hand-curate the images themselves.
+
+FORMULATING---------------------------------------------------
+
+Best Framed as:
+Unidimensional regression, which predicts
+a 1-dimensional scale that ranges from high to low
+
+DATA MODEL
+
+input 1  |  output |
+-------------------
+image    |  number |
+
+SOURCE OF DATA
+input 1  |  output |
+-------------------
+database |  number |
+
