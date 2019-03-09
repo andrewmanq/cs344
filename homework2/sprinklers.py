@@ -16,7 +16,7 @@ print("0.5")
 
 print("\nii. (Sprinker | cloudy) = ")
 print(enumeration_ask('Sprinkler', dict(Cloudy=T), sprinklerProblem).show_approx())
-"""We know that the Sprinkler has a .1% chance of going off on a cloudy day. ="""
+"""We know that the Sprinkler has a .1% chance of going off on a cloudy day."""
 
 print("\niii. P(Cloudy| the sprinkler is running and it’s not raining) =")
 print(enumeration_ask('Cloudy', dict(Sprinkler=T, Rain=F), sprinklerProblem).show_approx())

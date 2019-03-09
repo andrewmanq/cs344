@@ -65,7 +65,7 @@ class spamFilterProbability:
         g = comparison[1] * 2
 
         if (b + g) != 0:
-            answer = (b / self.nbad) / ((g / self.ngood) + (b / self.nbad))
+            answer = max(0.01, min(0.99, min(1.0, b/self.nbad) / (min(1.0, g/self.ngood) + min(1.0, b/self.nbad))))
 
             if answer >= 1:
                 answer = .99
