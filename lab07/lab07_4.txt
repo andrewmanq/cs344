@@ -1,0 +1,26 @@
+7.4
+
+TASK 1
+
+-What kind of dwelling has 55 rooms? and what kind of lonely person lives there?
+-I'm pretty sure an income of $3 wouldn't get you a cardboard box in California
+-Someone's house is 500 grand (and one dollar)
+
+TASK 2
+
+There's a big disconnect between the training and example data.
+
+TASK 3
+
+Nobody randomized the data. Actually, they they did but it was conveniently commented out.
+
+TASK 4
+
+linear_regressor = train_model(
+    learning_rate=0.00002,
+    steps=600,
+    batch_size=5,
+    training_examples=training_examples,
+    training_targets=training_targets,
+    validation_examples=validation_examples,
+    validation_targets=validation_targets)

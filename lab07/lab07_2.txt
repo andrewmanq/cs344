@@ -1,0 +1,23 @@
+7.2
+
+a. 	Categorical data is qualitative and representative, and is supposed to symbolize a category of objects (like names, postal codes, etc).
+	Numerical data focuses more on the quantitative attributes of the data, such as size and divisibility.
+
+b.	Task 1:
+
+train_model(
+    learning_rate=0.00003,
+    steps=600,
+    batch_size=4
+)
+
+	Task 2:
+
+train_model(
+    learning_rate=0.000021,
+    steps=900,
+    batch_size=5,
+    input_feature="population"
+)
+
+b. A hyperparameter is a configuration that is outside the model and not estimatable from the given data.

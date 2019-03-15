@@ -1,0 +1,36 @@
+7.3
+
+TASK 1
+
+california_housing_dataframe["rooms_per_person"] = california_housing_dataframe["total_rooms"] / california_housing_dataframe["population"]
+
+calibration_data = train_model(
+    learning_rate=0.04,
+    steps=550,
+    batch_size=5,
+    input_feature="rooms_per_person"
+)
+
+TASK 2
+
+plt.figure(figsize=(20, 10))
+plt.subplot(1, 2, 1)
+plt.scatter(calibration_data["predictions"], calibration_data["targets"])
+
+TASK 3
+
+california_housing_dataframe["rooms_per_person"] = california_housing_dataframe["rooms_per_person"].apply(lambda x: min(x, 5.0))
+
+rpp = california_housing_dataframe["rooms_per_person"].hist()
+
+calibration_data = train_model(
+    learning_rate=0.05,
+    steps=500,
+    batch_size=5,
+    input_feature="rooms_per_person")
+
+rpp = plt.scatter(calibration_data["predictions"], calibration_data["targets"])
+
+b. Synthetic features train a system on the dynamic between two values.
+
+c. Outliers are peices of data that aren't aligned with the majority of the data, and can throw off the network. These are usually pruned.

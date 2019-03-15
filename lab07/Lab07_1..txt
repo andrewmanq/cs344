@@ -1,4 +1,6 @@
 
+a.
+
 Exercise 1
 
 cities['IsSaint'] = cities['City name'].apply(lambda val: val.startswith("San"))
@@ -10,3 +12,7 @@ Excercise 2
 
 cities.reindex([0, 100, 300, 2])
 This is probably allowed because it would be easier to implement other lists without having to worry about null errors.
+
+b. Pandas does a lot of things under the hood that require a lot of operations otherwise. It's like how SQL alleviates the need to do lots of while loops and retreival functions.
+c. Training data is shuffled for input to a neural network to re-test an agent. Pathological ordering effects can also harm the performance of an AI's gradient.
+
