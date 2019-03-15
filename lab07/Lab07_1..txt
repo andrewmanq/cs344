@@ -1,0 +1,12 @@
+
+Exercise 1
+
+cities['IsSaint'] = cities['City name'].apply(lambda val: val.startswith("San"))
+cities['Greater50'] = cities['Area square miles'].apply(lambda val: val > 50)
+cities['Exercise1'] = cities['IsSaint'] & cities['Greater50']
+cities
+
+Excercise 2
+
+cities.reindex([0, 100, 300, 2])
+This is probably allowed because it would be easier to implement other lists without having to worry about null errors.
