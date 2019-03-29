@@ -1,5 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 
 # unfortunately I still could not get keras to work correctly. Instead, I've used a
 # similar library called sklearn, which imports the exact same boston housing data.
