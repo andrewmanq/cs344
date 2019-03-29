@@ -1,0 +1,14 @@
+
+Questions:
+
+	a. What does the Pearson correlation coefficient measure? Identify one example value from the correlation table you compute and explain why it makes sense.
+	
+		The pearson correlation coefficient is a good gauge of whether a feature is correlated with another feature in a dataset, and to what extent.
+		For instance, total_bedrooms and total_rooms has a strong .9 correlation because buildings with more rooms will likely also have
+		more bedrooms by definition.
+
+	b.Submit your solutions to tasks 1–2. Include the features you selected for task 1 and the synthetic features you developed for task 2; include the final RMS errors but not the training output. Did you beat the Google-provided baselines?
+		
+		
+
+Save your answers in lab08_1.txt.
