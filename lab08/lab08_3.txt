@@ -1,0 +1,12 @@
+﻿
+    a. Compare and contrast Seaborn vs. MatPlotLib.
+MatPlotLib is a lightweight graphing library. Seaborn a heavier library for polished data visualization.
+    b. How big is this dataset and does it seem of an appropriate size for this problem?
+314x9 - It's a few hundred short of what I've been working with in previous excercises, but still a lot. More data is always good in this situation. Compared to housing data, however, it's a lot more visibly correllated.
+    c. Explain what the prescribed normalization of the data does.
+Normalizing the data boils down the data's units to standard deviations constrained to the range of the data. It makes the values much smaller.
+    d. Is this an example of a linear regression model?
+Yes - It makes a pattern out of correlated data
+    e. In their conclusion, they claim that smaller datasets “prefer” smaller networks. Do you agree? Explain your answer.
+
+Save your answers in lab08_3.txt.
