@@ -1,0 +1,73 @@
+﻿Questions:
+
+    a.They recommend FTRL for L1 optimization, but the code specifies the same rate (learning_rate) for all runs. How is FTRL managing the learning rate?
+
+	The FtrlOptimizer takes in an initial learning rate and scales it by a power (default is .5 ) that slowly changes depending on how much training has been done.
+
+    b.What good does the bucketing/binning do?
+
+	It turns numeric input into categorical data. This likely decreases the workload of processing large ranges of numerical values, and pre-defining step functions that might generate on their own during back-propogation.
+
+    c.Submit your solutions to tasks 1–2. Did you find their task 1 bucketing to make sense? Identify one unique feature cross for task 2 and explain how it could be useful.
+
+	besides the obvious latitude vs longitude, one could do a feature cross of rooms_per_person and total_rooms to see interesting data about differences between living spaces and how they are divided between dwellers.
+
+TASK 1------------------------------------------------------------------
+
+def construct_feature_columns():
+  """Construct the TensorFlow Feature Columns.
+
+  Returns:
+    A set of feature columns
+  """ 
+  households = tf.feature_column.numeric_column("households")
+  longitude = tf.feature_column.numeric_column("longitude")
+  latitude = tf.feature_column.numeric_column("latitude")
+  housing_median_age = tf.feature_column.numeric_column("housing_median_age")
+  median_income = tf.feature_column.numeric_column("median_income")
+  rooms_per_person = tf.feature_column.numeric_column("rooms_per_person")
+  
+  # Divide households into 7 buckets.
+  bucketized_households = tf.feature_column.bucketized_column(
+    households, boundaries=get_quantile_based_boundaries(
+      training_examples["households"], 7))
+
+  # Divide longitude into 10 buckets.
+  bucketized_longitude = tf.feature_column.bucketized_column(
+    longitude, boundaries=get_quantile_based_boundaries(
+      training_examples["longitude"], 10))
+
+  #
+  # YOUR CODE HERE: bucketize the following columns, following the example above:
+  #
+  bucketized_latitude = tf.feature_column.bucketized_column(
+    latitude, boundaries=get_quantile_based_boundaries(
+      training_examples["latitude"], 10))
+  
+  bucketized_housing_median_age = tf.feature_column.bucketized_column(
+    housing_median_age, boundaries=get_quantile_based_boundaries(
+      training_examples["housing_median_age"], 7))
+  
+  bucketized_median_income =tf.feature_column.bucketized_column(
+    median_income, boundaries=get_quantile_based_boundaries(
+      training_examples["median_income"], 10))
+  
+  bucketized_rooms_per_person = tf.feature_column.bucketized_column(
+    rooms_per_person, boundaries=get_quantile_based_boundaries(
+      training_examples["rooms_per_person"], 20))
+  
+  feature_columns = set([
+    bucketized_longitude,
+    bucketized_latitude,
+    bucketized_housing_median_age,
+    bucketized_households,
+    bucketized_median_income,
+    bucketized_rooms_per_person])
+  
+  return feature_columns
+
+TASK 2 ----------------------------------------------------------------
+
+  long_x_lat = tf.feature_column.crossed_column(
+      set([bucketized_longitude, bucketized_latitude]),
+      hash_bucket_size = 1000)

@@ -1,14 +1,52 @@
-
+﻿
 Questions:
 
 	a. What does the Pearson correlation coefficient measure? Identify one example value from the correlation table you compute and explain why it makes sense.
 	
-		The pearson correlation coefficient is a good gauge of whether a feature is correlated with another feature in a dataset, and to what extent.
-		For instance, total_bedrooms and total_rooms has a strong .9 correlation because buildings with more rooms will likely also have
-		more bedrooms by definition.
+The pearson correlation coefficient is a good gauge of whether a feature is correlated with another feature in a dataset, and to what extent.For instance, total_bedrooms and total_rooms has a strong .9 correlation because buildings with more rooms will likely also havemore bedrooms by definition.
 
 	b.Submit your solutions to tasks 1–2. Include the features you selected for task 1 and the synthetic features you developed for task 2; include the final RMS errors but not the training output. Did you beat the Google-provided baselines?
-		
-		
 
-Save your answers in lab08_1.txt.
+TASK 1 - I tried 'total rooms' and 'medium income'. Despite having more correlation than the example, I could not find a solid training model that had a reliable RMSE elimination.
+
+minimal_features = [
+    "total_rooms",
+    "median_income"
+]
+
+assert minimal_features, "You must select at least one feature!"
+
+minimal_training_examples = training_examples[minimal_features]
+minimal_validation_examples = validation_examples[minimal_features]
+
+#
+# Don't forget to adjust these parameters.
+#
+train_model(
+    learning_rate=0.005,
+    steps=500,
+    batch_size=9,
+    training_examples=minimal_training_examples,
+    training_targets=training_targets,
+    validation_examples=minimal_validation_examples,
+    validation_targets=validation_targets)
+
+TASK 2
+
+def offset_from_SanFran(source_df):
+  selected_examples = pd.DataFrame()
+  selected_examples["median_income"] = source_df["median_income"]
+  selected_examples["offset_from_san_francisco"] = source_df["latitude"] - 38
+  return selected_examples
+
+selected_training_examples = distance_from_SanFran(training_examples)
+selected_validation_examples = offset_from_SanFran(validation_examples)
+
+supermodel = train_model(
+    learning_rate=0.01,
+    steps=700,
+    batch_size=5,
+    training_examples=selected_training_examples,
+    training_targets=training_targets,
+    validation_examples=selected_validation_examples,
+    validation_targets=validation_targets)
