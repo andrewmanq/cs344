@@ -1,0 +1,14 @@
+Questions:
+
+    a. How does the linear regression approach to the problem fare?
+
+While it does work to decrease RMSE, the linear regressor still soars above the 400s which is not a good sign.
+
+    b. Task 1: Compare and contrast L2 Loss vs LogLoss.
+
+L2 loss 
+
+    c. Task 2: Explain how the logistic regression fares compared to the linear regression.
+    d. Task 3: Here, just report the best values you can achieve for AUC/accuracy and what hyperparameters you used to get them.
+
+Save your answers in lab09_1.txt.
