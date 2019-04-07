@@ -1,0 +1,18 @@
+
+    Exercise 1:
+        a. What’s the size of the cats/dogs datasets?
+        1000 training
+        500 validation
+        b. How does the first convnet compare with the one we did in class.
+        The class example got over .99 percent correct. Compared to .69 from this one, it's a little underwhelming. At the same time, this subject is much more ambiguous than a set of symbols that are designed to be distinguishable from the other ones.
+        c. Can you see any interesting patterns in the intermediate representations?
+        Outlines seem to be a big deal for these algorithms.
+    Exercise 2:
+        d. What is data augmentation?
+        modifying an existing data set to create more training examples. Example: flipping/scaling an image for recognition,effectively making it a new training example.
+        e. Report your best results and the hyperparameters you used to get them.
+        steps/epoch - 100
+        epochs - 30
+        validation steps - 50
+        verbose - 2
+    You can skip Exercise 3.

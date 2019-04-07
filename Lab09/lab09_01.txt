@@ -6,9 +6,16 @@ While it does work to decrease RMSE, the linear regressor still soars above the 
 
     b. Task 1: Compare and contrast L2 Loss vs LogLoss.
 
-L2 loss 
+L2 loss adds up the squared difference between targets and predictions. Log loss constrains the normalized 0 to 1 differences that are useful for things like probability.
 
     c. Task 2: Explain how the logistic regression fares compared to the linear regression.
+
+while the last regression didn't improve much, the logistic regression passed .50
+
     d. Task 3: Here, just report the best values you can achieve for AUC/accuracy and what hyperparameters you used to get them.
+
+learning rate of 1x10^(4)
+3500 steps
+500 batch size
 
 Save your answers in lab09_1.txt.
