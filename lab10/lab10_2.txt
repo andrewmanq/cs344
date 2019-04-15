@@ -1,0 +1,7 @@
+
+
+Questions:
+
+    a. What does AdaGrad do to boost performance?
+    b. Tasks 1–4: Report your best hyperparameter settings and their resulting performance.
+    c. Optional Challenge: You can skip this exercise.

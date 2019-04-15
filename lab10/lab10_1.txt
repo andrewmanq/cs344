@@ -1,0 +1,26 @@
+Questions:
+
+    1. Would you rather use TensorFlow or Keras to build your models?
+
+Just from a usability standpoint, keras is much easier to set up and quickly test. I prefer the flexibility of keras despite the lack of granular control. This makes sense considering that keras is a usabiliy interface for tensorflow.
+
+    2. Tasks 1 & 2: Report your best hyper-parameter settings and their resulting performance on the testing dataset.
+
+TASK1
+------
+dnn_regressor = train_nn_regression_model(
+    learning_rate=0.001,
+    steps=1600,
+    batch_size=120,
+    hidden_units=[10, 2],
+    training_examples=training_examples,
+    training_targets=training_targets,
+    validation_examples=validation_examples,
+    validation_targets=validation_targets)
+
+    RMSE -> 112.89
+
+    TASK2
+    ------
+    result on test data -> 111.24
+
