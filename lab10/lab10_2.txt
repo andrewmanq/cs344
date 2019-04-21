@@ -3,5 +3,56 @@
 Questions:
 
     a. What does AdaGrad do to boost performance?
+Adagrad finds gradients by testing different learning rates on the graph. This allows it to avoid the pitfalls of fixed learning rates that take forever to increment down more obvious gradients.
+
     b. Tasks 1–4: Report your best hyperparameter settings and their resulting performance.
+    
+
+    TASK 1
+
+def normalize_linear_scale(examples_dataframe):
+  """Returns a version of the input `DataFrame` that has all its features normalized linearly."""
+  processed_features = pd.DataFrame()
+  for column in examples_dataframe:
+    processed_features[column] = linear_scale(examples_dataframe[column])
+  return processed_features
+  
+
+normalized_dataframe = normalize_linear_scale(preprocess_features(california_housing_dataframe))
+normalized_training_examples = normalized_dataframe.head(12000)
+normalized_validation_examples = normalized_dataframe.tail(5000)
+
+_ = train_nn_regression_model(
+    my_optimizer=tf.train.GradientDescentOptimizer(learning_rate=0.0007),
+    steps=3000,
+    batch_size=50,
+    hidden_units=[10, 10],
+    training_examples=normalized_training_examples,
+    training_targets=training_targets,
+    validation_examples=normalized_validation_examples,
+    validation_targets=validation_targets)
+
+
+    TASK 2
+
+    _, adagrad_training_losses, adagrad_validation_losses = train_nn_regression_model(
+    my_optimizer=tf.train.AdagradOptimizer(learning_rate=0.5),
+    steps=500,
+    batch_size=100,
+    hidden_units=[10, 10],
+    training_examples=normalized_training_examples,
+    training_targets=training_targets,
+    validation_examples=normalized_validation_examples,
+    validation_targets=validation_targets)
+
+    _, adam_training_losses, adam_validation_losses = train_nn_regression_model(
+    my_optimizer=tf.train.AdamOptimizer(learning_rate=0.009),
+    steps=500,
+    batch_size=100,
+    hidden_units=[10, 10],
+    training_examples=normalized_training_examples,
+    training_targets=training_targets,
+    validation_examples=normalized_validation_examples,
+    validation_targets=validation_targets)
+
     c. Optional Challenge: You can skip this exercise.
