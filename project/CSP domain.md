@@ -26,4 +26,8 @@ the order in which the variables are fed into the builder class (to make the bui
 
 -any additive or subtractive outline operation (shrink, grow, outset, inset) is not allowed if it causes an outline to overlap itself.
 
--any operation forbidden by the stylistic guidelines is not allowed
+-any operation forbidden by the stylistic guidelines (controlled by user) is not allowed
+
+-a building that has been curved before cannot be curved again
+
+-a building that is beveled cannot be beveled again
