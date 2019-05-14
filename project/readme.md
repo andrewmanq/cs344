@@ -2,7 +2,7 @@
 
 ## vision
 
-I made an AI that designs buildings using a pseudo-random number generation, state machines, and GOFAI implementations. Each layer of complexity makes the algorithm more varied and convincing. Created with the Unity API and engine tools.
+I made an AI that designs buildings with pseudo-random number generation, state machines, and GOFAI implementations. Each layer of complexity makes the algorithm more varied and convincing. Created with the Unity API and engine tools.
 
 ## links
 
