@@ -4,6 +4,15 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 
+/* interpreter.cs
+ * 
+ * This script is a middle-man between the UI and the builder class.
+ * Most functions are called by UI elements within the unity scene editor.
+ * 
+ * author: Andrew Quist
+ * date: 5/13/2019
+ * 
+ */
 public class interpreter : MonoBehaviour
 {
 
@@ -35,6 +44,7 @@ public class interpreter : MonoBehaviour
     private List<Vector3> newOutline;
     LineRenderer line;
     
+    //called at the start of the program
     void Start()
     {
         line = gameObject.GetComponent<LineRenderer>();

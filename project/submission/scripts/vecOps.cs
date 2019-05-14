@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* vecOps.cs
+ * 
+ * This script is a maths-heavy utility script. Each function is used by builder.cs to manipulate
+ * the shape of building facades.
+ * 
+ * author: Andrew Quist
+ * date: 5/13/2019
+ * 
+ */
+
 public static class vecOps
 {
     //Does a quadratic curve operation on the corners of the outline, like those curvy line graph things
@@ -195,6 +205,7 @@ public static class vecOps
         return answer;
     }
 
+    //Adds a diagonal shear to corners
     public static List<Vector3> basicBevel(List<Vector3> points, float dist)
     {
         dist /= 2;

@@ -3,6 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using static vecOps;
 
+/* builder.cs
+ * 
+ * This script holds the builder class. It is responsible for designing, creating,
+ * and 'materializing' buildings.
+ * 
+ * HOW TO USE:
+ * - initialize by passing in a list of Vectors, which represent the parcel outline of the building
+ * - use randomizeValues() to get a unique building footprint
+ * - call designBuilding() to construct a building and its mesh
+ * - call setMaterials() to tell it what textures / materials to use
+ * - call makeBuilding() to initialize a Unity game object with the proper mesh/materials
+ * 
+ * author: Andrew Quist
+ * date: 5/13/2019
+ * 
+ */
 public class builder
 {
     //holds the wall mesh
@@ -40,9 +56,10 @@ public class builder
     public int complexity = 5;
     private int complexCount = 0;
 
-    //If any of these are enabled, their corresponding operations
-    //are banned by the CSP. This allows for architectural consistency among
-    //buildings
+    /* If any of these are enabled, their corresponding operations
+     * are banned by the CSP. This allows for architectural consistency among
+     * buildings.
+     */
     public bool noGrow = false;
     public bool noShrink = false;
     public bool noInset = false;
@@ -50,9 +67,12 @@ public class builder
     public bool noCurves = false;
     public bool noBevel = false;
 
+    //curved is a bool. If it is enabled, the building will appear curved
+    //(although its underlying representation is still polygonal)
     public bool curved = false;
     public float curveAmount = 0;
 
+    //works the same as curvature.
     public bool bevel = false;
     public float bevelAmount = 0;
 
@@ -118,10 +138,12 @@ public class builder
 
         string rejection = "";
 
-        while (rejection != "done")
+        while (rejection != "done") //loops until interpreter is satisfied with the input
         {
+            //does a full traversal of the graph, starts where interpreter last rejected a state
             string traversal = designer.fullTraversal(rejection);
-            rejection = interpret(traversal, seed);
+            //the last recorded state. Breaks loop when interpreter returns "done"
+            rejection = interpret(traversal);
         }
     }
 
@@ -136,19 +158,23 @@ public class builder
     }
 
     //takes a string with instructions to make the building
-    public string interpret(string input, int heightSeed)
+    public string interpret(string input)
     {
 
+        //split the string into seperate words for parsing
         var words = input.Split(' ');
+        //rejection is the previous state. If the current state is illegal,
+        //  rejection is returned to denote the last parsed state and
+        //  re-traversed from there.
         string rejection = "done";
-
-        Random.InitState(heightSeed);
 
         foreach (string s in words)
         {
             switch (s)
             {
-
+                //bevel is allowed if it is not banned
+                //bevel is allowed if not curved
+                //bevel is allowed if not previously beveled
                 case "bevel":
                     if (noBevel || bevel || curved)
                     {
@@ -159,7 +185,9 @@ public class builder
                         addBevel();
                     }
                     break;
-
+                
+                //curves are allowed if they are not banned
+                //curves are allowed if not previously curved
                 case "curved":
                     if (noCurves || curved)
                     {
@@ -168,7 +196,9 @@ public class builder
                     bevel = false;
                     curve();
                     break;
-
+                
+                //inset is allowed if not banned
+                //inset is allowed if it is successful (no overlaps)
                 case "inset":
                     if(!noInset && inset(.2f))
                     {
@@ -179,6 +209,9 @@ public class builder
                         return rejection;
                     }
 
+                //outset is allowed if not banned
+                //outset is not allowed on ground floor (violates parcel limits)
+                //outset is allowed if it is successful (no overlaps)
                 case "outset":
                     if (!noOutset && complexCount > 0 && outset(.2f))
                     {
@@ -188,7 +221,9 @@ public class builder
                     {
                         return rejection;
                     }
-
+                
+                //wall extrusion height is randomly chosen for variation's sake
+                //extrusion is allowed if the building complexity is lower than limit
                 case "extrude":
                     extrudeUp(Random.Range(2, heightChange) * storyHeight);
                     if(complexCount > complexity)
@@ -196,7 +231,9 @@ public class builder
                         return "done";
                     }
                     break;
-
+                
+                //shrink is allowed if not banned
+                //shrink is allowed if successful (no overlaps)
                 case "shrink":
 
                     if (!noShrink && shrink(sizeChange))
@@ -208,6 +245,9 @@ public class builder
                         return rejection;
                     }
 
+                //grow is allowed if not banned
+                //grow is not allowed on ground floor (violates parcel limits)
+                //grow operation must be successful (no overlaps)
                 case "grow":
                     if (!noGrow)
                     {
@@ -226,9 +266,11 @@ public class builder
                     }
             }
 
+            //records this successful state in case the next state fails
             rejection = s;
         }
 
+        //if this string is legal, the function returns as "done"
         return "done";
 
     }
